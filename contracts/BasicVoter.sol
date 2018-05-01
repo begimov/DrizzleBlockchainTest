@@ -8,6 +8,8 @@ contract BasicVoter {
         mapping (address => uint) votes;
     }
 
+    uint public storedData;
+
     Proposal[] public proposals;
 
     function countProposals() public returns (uint) {

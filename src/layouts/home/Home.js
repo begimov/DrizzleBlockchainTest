@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
 import logo from '../../logo.png'
+import BasicVoter from '../../components/BasicVoter';
 
 class Home extends Component {
   render() {
@@ -24,7 +25,8 @@ class Home extends Component {
 
           <div className="pure-u-1-1">
             <h2>BasicVoter</h2>
-            <p><strong>Proposals</strong>: </p>
+            {/* <ContractData contract="BasicVoter" method="storedData" /> */}
+            <p><strong>Proposals</strong>: <BasicVoter accounts={this.props.accounts}/></p>
 
             <br/><br/>
           </div>
