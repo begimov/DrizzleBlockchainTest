@@ -1,7 +1,7 @@
 import ComplexStorage from './../build/contracts/ComplexStorage.json'
 import SimpleStorage from './../build/contracts/SimpleStorage.json'
 import TutorialToken from './../build/contracts/TutorialToken.json'
-import TutorialToken from './../build/contracts/BasicVoter.json'
+import BasicVoter from './../build/contracts/BasicVoter.json'
 
 const drizzleOptions = {
   web3: {
