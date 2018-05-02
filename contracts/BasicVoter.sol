@@ -12,6 +12,14 @@ contract BasicVoter {
 
     Proposal[] public proposals;
 
+    constructor() public {
+        proposals.push(Proposal({
+            name: "NAME",
+            state: true,
+            totalVotes: 0
+        }));
+    }
+
     function countProposals() public view returns (uint) {
         return proposals.length;
     }
@@ -28,7 +36,7 @@ contract BasicVoter {
         return proposals[id].state;
     }
 
-    function getProposalName(uint id) public returns (bytes32) {
+    function getProposalName(uint id) public view returns (bytes32) {
         return proposals[id].name;
     }
 
