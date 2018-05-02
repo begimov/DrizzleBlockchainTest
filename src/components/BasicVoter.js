@@ -12,37 +12,36 @@ class BasicVoter extends Component {
 
         this.contracts = context.drizzle.contracts
 
-        this.stackId = this.contracts.BasicVoter.methods.countProposals.cacheSend({from: this.props.accounts[0]})
+        this.web3Utils = context.drizzle.web3.utils
 
-        console.log(this.stackId)
+        this.dataKey = this.contracts.BasicVoter.methods.countProposals.cacheCall()
     }
 
     render() {
-
-        if (this.props.store.getState().transactionStack[this.stackId]) {
-            const txHash = this.props.store.getState().transactionStack[this.stackId]
-    
-            console.log(this.props.store.getState())
+        if (!(this.dataKey in this.props.contracts.BasicVoter.countProposals)) {
+            return (
+                <span>Fetching...</span>
+            )
         }
 
-        console.log()
+        var displayData = this.props.contracts.BasicVoter.countProposals[this.dataKey].value
 
-        // if (!(this.dataKey in this.props.contracts.BasicVoter['countProposals'])) {
-        //     return (
-        //         <span>Fetching...</span>
-        //     )
-        // }
-        // var displayData = this.props.contracts.BasicVoter['countProposals'][this.dataKey].value
-
-
-        // return (
-        //     <span>{displayData}</span>
-        // )
         return (
-            <span>1</span>
+            <span>
+                <span>{displayData}</span>
+                <span><button onClick={() => this.vote()}>VOTE</button></span>
+            </span>
         )
     }
+
+    vote() {
+        console.log('VOTE')
+        this.stackId = this.contracts.BasicVoter.methods.addProposal.cacheSend(this.web3Utils.asciiToHex('Proposal 1'), { from: this.props.accounts[0] })
+        console.log(this.stackId)
+    }
 }
+
+
 
 BasicVoter.contextTypes = {
     drizzle: PropTypes.object

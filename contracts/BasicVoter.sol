@@ -12,7 +12,7 @@ contract BasicVoter {
 
     Proposal[] public proposals;
 
-    function countProposals() public returns (uint) {
+    function countProposals() public view returns (uint) {
         return proposals.length;
     }
 
